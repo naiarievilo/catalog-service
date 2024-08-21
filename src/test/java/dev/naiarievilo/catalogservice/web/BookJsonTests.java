@@ -15,17 +15,20 @@ class BookJsonTests {
     @Autowired
     private JacksonTester<Book> json;
 
-    private final Book book = new Book("1234567890", "Title", "Author", 9.90);
+    private final Book book = Book.of("1234567890", "Title", "Author", 9.90, null);
 
     @Test
     void testSerialize() throws Exception {
         JsonContent<Book> jsonContent = json.write(book);
 
+        assertThat(jsonContent).extractingJsonPathValue("@.id").isEqualTo(book.id());
         assertThat(jsonContent).extractingJsonPathStringValue("@.isbn").isEqualTo(book.isbn());
         assertThat(jsonContent).extractingJsonPathStringValue("@.title").isEqualTo(book.title());
         assertThat(jsonContent).extractingJsonPathStringValue("@.author").isEqualTo(book.author());
         assertThat(jsonContent).extractingJsonPathNumberValue("@.price").isEqualTo(book.price());
-
+        assertThat(jsonContent).extractingJsonPathValue("@.createdDate").isEqualTo(book.createdDate());
+        assertThat(jsonContent).extractingJsonPathValue("@.lastModifiedDate").isEqualTo(book.lastModifiedDate());
+        assertThat(jsonContent).extractingJsonPathNumberValue("@.version").isEqualTo(book.version());
     }
 
     @Test
