@@ -1,6 +1,5 @@
 name: "Commit stage"
 on: "push"
-
 env:
   REGISTRY: "ghrc.io"
   IMAGE_NAME: "naiarievilo/catalog-service"
