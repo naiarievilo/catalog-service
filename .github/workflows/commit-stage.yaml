@@ -74,7 +74,7 @@ jobs:
         uses: "docker://ghcr.io/yannh/kubeconform:latest"
         with:
           entrypoint: "/kubeconform"
-          args: "-summary k8s/"
+          args: "-summary k8s"
 
       - name: "Build container image"
         run: |
