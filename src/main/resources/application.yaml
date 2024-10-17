@@ -2,27 +2,27 @@ management:
   endpoints:
     web:
       exposure:
-        include: "refresh"
+        include: refresh,health
 
 polar:
-  greeting: "Welcome to the catalog from the catalog service!"
+  greeting: Welcome to the catalog from the catalog service!
 
 server:
   port: 9001
-  shutdown: "graceful"
+  shutdown: graceful
   tomcat:
-    connection-timeout: "2s"
-    keep-alive-timeout: "15s"
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
     threads:
       max: 50
       min-spare: 5
 
 spring:
   application:
-    name: "catalog-service"
+    name: catalog-service
   cloud:
     config:
-      uri: "http://localhost:8888"
+      uri: http://localhost:8888
       request-connect-timeout: 5000
       request-read-timeout: 5000
       fail-fast: false
@@ -33,15 +33,15 @@ spring:
         multiplier: 1.1
 
   config:
-    import: "optional:configserver:"
+    import: 'optional:configserver:'
 
   datasource:
-    username: "user"
-    password: "password"
-    url: "jdbc:postgresql://localhost:5432/polardb_catalog"
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/polardb_catalog
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
 
   lifecycle:
-    timeout-per-shutdown-phase: "15s"
+    timeout-per-shutdown-phase: 15s
